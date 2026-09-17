@@ -1,36 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>个人主页</title>
+    <style>
+        body {
+            font-family: "微软雅黑", sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header img {
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        h3 {
+            color: #ff8c00;
+            margin-bottom: 12px;
+            border-left: 4px solid #ff8c00;
+            padding-left: 8px;
+        }
+        ul, ol {
+            line-height: 2.2;
+            padding-left: 20px;
+        }
+        .label {
+            color: #ff8c00;
+            font-weight: bold;
+        }
+        progress {
+            width: 220px;
+            height: 14px;
+            vertical-align: middle;
+            margin: 0 8px;
+        }
+        .no-copy {
+            user-select: none;
+        }
+        .pwd-box {
+            margin: 10px 0;
+        }
+        .pwd-box input {
+            padding: 5px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pwd-box button {
+            padding: 5px 12px;
+            background: #ff8c00;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        a {
+            color: #ff8c00;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <img src="touxiang.jpg" alt="头像" width="160px">
-    <h2>孔思哲</h2>
-    <ul>
-        <li><span style="color: orange;">学校：</span>曲阜师范大学</li>
-        <li><span style="color: orange;">专业：</span>计算机科学与技术</li>
-        <li><span style="color: orange;">邮箱：</span>kongsizhe666@qq.com</li>
+    <header>
+        <img src="touxiang.jpg" alt="头像" width="160px" draggable="false">
+        <h2>孔思哲</h2>
+    </header>
 
-    <h3>学习进度</h3>
-    <ol>
-        <li>c++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成进度：<div style="width: 220px;height: 14px;background:#ddd;display: inline-block;overflow: hidden;">
-            <div style="width: 100%;height: 100%;background: orange;"></div>
-            </div>100%
-        </li>
-        <li>web&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成进度：<div style="width: 220px;height: 14px;background:#ddd;display: inline-block;overflow: hidden;">
-            <div style="width: 30%;height: 100%;background: orange;"></div>
-            </div>30%
-        </li>
-        <li>python&nbsp;&nbsp;&nbsp;完成进度：<div style="width: 220px;height: 14px;background:#ddd;display: inline-block;overflow: hidden;">
-            <div style="width: 0%;height: 100%;background: orange;"></div>
-            </div>0%
-        </li>
+    <main>
+        <section class="no-copy" draggable="false">
+            <h3>个人信息</h3>
+            <ul>
+                <li><span class="label">学校：</span>曲阜师范大学</li>
+                <li><span class="label">专业：</span>计算机科学与技术</li>
+                <li><span class="label">邮箱：</span>kongsizhe666@qq.com</li>
+            </ul>
+        </section>
 
-    </ol>
-        <li><span style="color: orange;">论文下载：</span></li>
-        <span><a href="111">论文</a></span>
-    </ul>
+        <section class="no-copy" draggable="false">
+            <h3>学习进度</h3>
+            <ol>
+                <li>
+                    C++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成进度：
+                    <progress value="100" max="100"></progress>
+                    100%
+                </li>
+                <li>
+                    Web&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成进度：
+                    <progress value="30" max="100"></progress>
+                    30%
+                </li>
+                <li>
+                    Python&nbsp;&nbsp;完成进度：
+                    <progress value="0" max="100"></progress>
+                    0%
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h3>资料下载</h3>
+            <div class="pwd-box">
+                <input type="password" id="pwdInput" placeholder="请输入密码查看">
+                <button onclick="showContent()">确认</button>
+            </div>
+            <div id="hiddenContent" hidden>
+                <span class="label">论文下载：</span>
+                <a href="111">论文</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showContent() {
+            const inputPwd = document.getElementById('pwdInput').value;
+            const content = document.getElementById('hiddenContent');
+            if (inputPwd === '123456') {
+                content.removeAttribute('hidden');
+            } else {
+                alert('密码错误，请重试');
+            }
+        }
+    </script>
 </body>
 </html>
